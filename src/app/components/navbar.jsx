@@ -7,16 +7,26 @@ import { usePathname } from 'next/navigation'
 export default function Navbar() {
   const pathname = usePathname()
   return (
-    <header className="h-[60px] flex gap-6 items-center border-b border-light-gray w-full ">
-      <div className="relative w-2/12 h-8">
+    <header className="h-[80px] flex lg:justify-between gap-6 items-center border-b border-light-gray w-full ">
+      <div className="lg:hidden">
+      <Image
+          src={"/assets/shared/tablet/icon-hamburger.svg"}
+          width={16}
+          height={15}
+          alt="hamburger"
+          priority
+        />
+      </div>
+      <div className="relative ms-auto md:ms-0">
         <Image
           src={"/assets/shared/desktop/logo.svg"}
-          fill={true}
+          width={140}
+          height={25}
           alt="logo"
           priority
         />
       </div>
-      <div className="w-9/12 flex gap-6 justify-center items-center">
+      <div className="hidden w-9/12 lg:flex gap-6 justify-center items-center">
         {[
           {
             href: "/",
@@ -52,7 +62,7 @@ export default function Navbar() {
           );
         })}
       </div>
-      <div className="w-1/12 flex justify-end">
+      <div className="ms-auto">
         <Image
           src={"/assets/shared/desktop/icon-cart.svg"}
           width={23}

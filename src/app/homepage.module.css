@@ -1,6 +1,25 @@
 .hero{
-    background: url('../../public/assets/home/desktop/image-hero.jpg');
+    background: url('../../public/assets/home/mobile/image-header.jpg');
     background-repeat: no-repeat;
-    background-position: top;
-    background-size: 110%;
+    background-position: center;
+    background-size: contain;
+}
+
+
+@media screen and (min-width: 600px) {
+    .hero{
+        background: url('../../public/assets/home/tablet/image-header.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .hero{
+        background: url('../../public/assets/home/desktop/image-hero.jpg');
+        background-repeat: no-repeat;
+        background-position: bottom left;
+        background-size: 110%;
+    }
 }

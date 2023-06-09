@@ -10,9 +10,17 @@ module.exports = {
       colors: {
         'dark-primary': '#191919',
         'primary': '#D87D4A',
-        'light-gray': '#979797'
+        'light-gray': '#979797',
+        'mute': '#F1F1F1'
       }
     },
+    screens: {
+      'sm': '600px',
+      'md': '768px',
+      'lg': '1000px',
+      'xl': '1100px',
+      '2xl': '1536px',
+    }
   },
   plugins: [],
 }
