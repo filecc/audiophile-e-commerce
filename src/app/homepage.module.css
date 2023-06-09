@@ -1,0 +1,6 @@
+.hero{
+    background: url('../../public/assets/home/desktop/image-hero.jpg');
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: 110%;
+}
