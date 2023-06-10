@@ -1,7 +1,8 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
 import { Manrope } from 'next/font/google'
 import Navbar from './components/navbar'
+import FooterTop from './components/footer/footerTop'
+import FooterBottom from './components/footer/footerBottom'
 
 const manrope = Manrope({ subsets: ['latin'] })
 
@@ -16,14 +17,25 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={manrope.className}>
         <div className='bg-dark-primary'>
-          <div  className='max-w-[1100px] mx-auto px-4'>
+          <div className='max-w-[689px] lg:max-w-[1110px] mx-auto px-4'>
             <Navbar />
           </div>
         </div>
         <div>
           {children}
         </div>
-
+        <footer>
+        <div className='max-w-[689px] lg:max-w-[1110px] mx-auto'>
+          <FooterTop />
+        </div>
+        <div className='bg-dark-secondary'>
+            <div  className='max-w-[689px] lg:max-w-[1110px] mx-auto'>
+            <FooterBottom />
+            </div>
+        </div>
+       
+       
+        </footer>
       
       </body>
     </html>

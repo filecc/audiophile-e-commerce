@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from 'next/navigation'
+import links from '/public/assets/data/links.json'
 
 export default function Navbar() {
   const pathname = usePathname()
@@ -27,24 +28,7 @@ export default function Navbar() {
         />
       </div>
       <div className="hidden w-9/12 lg:flex gap-6 justify-center items-center">
-        {[
-          {
-            href: "/",
-            name: "home",
-          },
-          {
-            href: "/headphones",
-            name: "headphones",
-          },
-          {
-            href: "/speakers",
-            name: "speakers",
-          },
-          {
-            href: "/earphones",
-            name: "earphones",
-          },
-        ].map((element) => {
+        {links.map((element) => {
           const isActive = pathname === element.href
           return (
           
