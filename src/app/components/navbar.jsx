@@ -33,8 +33,8 @@ export default function Navbar() {
             name: "home",
           },
           {
-            href: "/headephones",
-            name: "headephones",
+            href: "/headphones",
+            name: "headphones",
           },
           {
             href: "/speakers",

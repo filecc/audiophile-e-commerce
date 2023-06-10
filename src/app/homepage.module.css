@@ -1,8 +1,8 @@
 .hero{
     background: url('../../public/assets/home/mobile/image-header.jpg');
     background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+    background-position: bottom;
+    background-size: cover;
 }
 
 
