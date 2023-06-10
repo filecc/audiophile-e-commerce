@@ -1,5 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import headphones from '/public/assets/shared/desktop/image-category-thumbnail-headphones.png'
+import earphones from '/public/assets/shared/desktop/image-category-thumbnail-earphones.png'
+import speakers from '/public/assets/shared/desktop/image-category-thumbnail-speakers.png'
 
 export default function Product({ title, href }) {
     return (
@@ -13,6 +16,7 @@ export default function Product({ title, href }) {
                 fill={true}
                 alt="arrow right - go to shop"
             />
+             
                 <h2 className="uppercase font-bold text-sm tracking-[1px] mt-8">{title}</h2>
                 <div className="cursor-pointer">
                     <Link className="text-xs uppercase font-bold opacity-40 tracking-[1px] cursor-pointer" href={href}>shop
@@ -30,3 +34,9 @@ export default function Product({ title, href }) {
         </div>
     )
 }
+
+{/* <Image
+    className="absolute top-0 -translate-y-1/2 object-contain"
+    src={title === 'headphones' ? headphones : (title === 'earphones' ? earphones : speakers)}
+    alt="arrow - go to shop"
+/> */}
