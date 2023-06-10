@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styles from '../../homepage.module.css'
 import Link from "next/link";
+import Button from "../utils/button";
 
 export default function Hero() {
     return (
@@ -16,9 +17,11 @@ export default function Hero() {
                     Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast.
                     </p>
                     <div className="text-center md:text-start">
-                    <Link href={'/headphones'} className="uppercase inline-block text-xs tracking-[1px] font-bold bg-primary px-6 py-3 ">
-                        see product
-                    </Link>
+                    <Button 
+                    name={'see product'}
+                    href={'/headphones'}
+                    bgColor={'bg-primary'}
+                    />
                     </div>
                 </div>
             </div>
