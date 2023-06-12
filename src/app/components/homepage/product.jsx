@@ -1,8 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import headphones from '/public/assets/shared/desktop/image-category-thumbnail-headphones.png'
-import earphones from '/public/assets/shared/desktop/image-category-thumbnail-earphones.png'
-import speakers from '/public/assets/shared/desktop/image-category-thumbnail-speakers.png'
 
 export default function Product({ title, href }) {
     return (
