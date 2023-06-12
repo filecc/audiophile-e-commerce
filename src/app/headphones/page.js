@@ -3,7 +3,7 @@ import SingleProduct from "../components/products-show/SingleProduct";
 import { sortByProperty } from "../components/utils/functions";
 import data from '/public/assets/data/data.json'
 
-export default function Home()
+export default function Page()
 {
     const headphones = data.filter(element => {
        if( element.category === 'headphones') return true
