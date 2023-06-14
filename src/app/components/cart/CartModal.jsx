@@ -14,7 +14,7 @@ export default function CartModal({ setCartOpen }) {
         return quantity
     }
 
-    
+
 
     const handleEmptyCart = () => {
         setState(state => ([{ quantity: 0, item: '' }]))
@@ -22,10 +22,11 @@ export default function CartModal({ setCartOpen }) {
     }
 
     const products = state.filter(element => element.quantity > 0)
+
     const handleCartTotal = () => {
         let total = 0;
         products.forEach(element => {
-            total += element.item.price
+            total += (element.item.price)*(element.quantity)
         });
         return total
     }
@@ -49,17 +50,29 @@ export default function CartModal({ setCartOpen }) {
                                 <Image className="rounded-lg" src={item.image.mobile} alt={item.name} fill={true} />
                             </div>
                             <div className="w-4/12">
-                            <h6 className="font-bold uppercase">{item.name}</h6>
-                            <small className="text-sm opacity-40 font-bold">€ {item.price}</small>
+                                <h6 className="font-bold uppercase">{item.name}</h6>
+                                <small className="text-sm opacity-40 font-bold">€ {item.price}</small>
                             </div>
                             <div className="w-4/12">
-                                hello
+                                <div
+                                    className={"uppercase text-xs tracking-[1px] font-bold px-6 py-3 bg-gray-100 flex justify-between items-center"}
+                                >
+                                    <button>-</button>
+                                    <p>{element.quantity}</p>
+                                    <button >+</button>
+                                </div>
+
                             </div>
                         </div>
                     )
                 })}
             </div>
-            total: {handleCartTotal()}
+
+            <div className="flex justify-between items-center pt-6">
+                <p className="uppercase text-[15px] opacity-40">total</p>
+                <p className="text-[18px] font-bold">€ {handleCartTotal().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
+            </div>
+
         </div>
     )
 }

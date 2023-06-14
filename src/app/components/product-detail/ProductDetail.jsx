@@ -13,15 +13,31 @@ export default function ProductDetail({ product }) {
   const [state, setState] = useContext(CartContext)
   const [itemToBuy, setItemToBuy] = useState(1)
 
-  const handleIncrement = () => 
-  {
-    setState(state => ([...state, {quantity: itemToBuy, item: product}]))
+  const handleIncrement = () => {
+    const found = state.find(element => element.item.id === product.id);
+    if (!found) 
+    {
+      setState(state => ([...state, { quantity: itemToBuy, item: product }]))
+    }
+    else 
+    {
+      const updatedState = state.map((element) => {
+        if (element.item.id === found.item.id) {
+          return { ...element, quantity: element.quantity + itemToBuy };
+        }
+        return element;
+      });
+      setState(updatedState);
+      console.log(state)
+    }
+
+
   }
 
   return (
     <>
       <Link className="opacity-40 font-medium pb-4 inline-block" href={"/" + product.category}>Go back</Link>
-     
+
       <div className="md:flex md:justify-between">
         <div className="relative h-[350px] md:h-[470px] w-full md:w-6/12 me-4">
           <Image
@@ -54,7 +70,7 @@ export default function ProductDetail({ product }) {
                 <div
                   className={"uppercase text-xs tracking-[1px] font-bold px-6 py-3 bg-gray-100 flex justify-between items-center"}
                 >
-                  <button disabled={itemToBuy === 0} onClick={() => setItemToBuy(itemToBuy => itemToBuy - 1)}>-</button>
+                  <button disabled={itemToBuy === 1} onClick={() => setItemToBuy(itemToBuy => itemToBuy - 1)}>-</button>
                   <p>{itemToBuy}</p>
                   <button disabled={itemToBuy >= 10} onClick={() => setItemToBuy(itemToBuy => itemToBuy + 1)}>+</button>
                 </div>

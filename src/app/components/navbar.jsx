@@ -91,7 +91,7 @@ export default function Navbar() {
         </section>}
       </motion.div>
       <motion.div layout className="bg-white w-full rounded" style={{height: cartOpen ? 'auto' : 0}}>
-      {cartOpen && <section className='px-4 mt-8 md:flex justify-between max-w-[689px] lg:max-w-[1110px] mx-auto'>
+      {cartOpen && <section className='px-4 mt-8 md:flex justify-between max-w-[689px] lg:max-w-[1110px] mx-auto shadow-lg'>
             <CartModal itemsTotal={handleCartQuantity()} setCartOpen={setCartOpen} />
         </section>}
       </motion.div>
