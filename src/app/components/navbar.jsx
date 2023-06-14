@@ -4,11 +4,26 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from 'next/navigation'
 import links from '/public/assets/data/links.json'
+import { useContext } from "react";
+import { CartContext, CartContextProvider } from "./utils/CartContext";
+
 
 export default function Navbar() {
   const pathname = usePathname()
+  const [state, setState] = useContext(CartContext)
+
+  const handleCartQuantity = () => {
+    let quantity = 0;
+    state.forEach(element => {
+      quantity += element.quantity
+    });
+   return quantity
+  }
+
   return (
+    <>
     <header className="h-[80px] flex lg:justify-between gap-6 items-center border-b border-light-gray w-full ">
+    
       <div className="lg:hidden">
       <Image
           src={"/assets/shared/tablet/icon-hamburger.svg"}
@@ -46,7 +61,12 @@ export default function Navbar() {
           );
         })}
       </div>
-      <div className="ms-auto">
+      <div className="ms-auto flex items-center gap-2">
+      <div className="grid place-items-center">
+      {handleCartQuantity() > 0 && <span className="text-white">{handleCartQuantity()}</span>}
+        
+      </div>
+      
         <Image
           src={"/assets/shared/desktop/icon-cart.svg"}
           width={23}
@@ -57,5 +77,6 @@ export default function Navbar() {
         />
       </div>
     </header>
+    </>
   );
 }

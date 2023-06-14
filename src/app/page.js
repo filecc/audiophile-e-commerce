@@ -13,9 +13,11 @@ import zx9speakerDesktop from '/public/assets/home/desktop/image-speaker-zx9.png
 import zx7speakerDesktop from '/public/assets/home/desktop/image-speaker-zx7.jpg'
 import yx1earphonesDesktop from '/public/assets/home/desktop/image-earphones-yx1.jpg'
 
+
 export default function Home() {
 
   return (
+    <>
     <main>
       {/* 
       *** HERO 
@@ -105,5 +107,6 @@ export default function Home() {
       </section>
 
     </main>
+    </>
   )
 }

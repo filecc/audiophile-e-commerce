@@ -1,13 +1,27 @@
+'use client'
 import Image from "next/image";
 import Link from "next/link";
 import Button from "../utils/button";
 import { createUrl } from "../utils/functions";
 import ProductsSummary from "./ProductsSummary";
+import { useContext, useState } from "react";
+import { CartContext } from "../utils/CartContext";
+import ButtonAction from "../utils/buttonAction";
 
 export default function ProductDetail({ product }) {
+
+  const [state, setState] = useContext(CartContext)
+  const [itemToBuy, setItemToBuy] = useState(1)
+
+  const handleIncrement = () => 
+  {
+    setState(state => ([...state, {quantity: itemToBuy, item: product}]))
+  }
+
   return (
     <>
       <Link className="opacity-40 font-medium pb-4 inline-block" href={"/" + product.category}>Go back</Link>
+     
       <div className="md:flex md:justify-between">
         <div className="relative h-[350px] md:h-[470px] w-full md:w-6/12 me-4">
           <Image
@@ -40,12 +54,12 @@ export default function ProductDetail({ product }) {
                 <div
                   className={"uppercase text-xs tracking-[1px] font-bold px-6 py-3 bg-gray-100 flex justify-between items-center"}
                 >
-                  <button>-</button>
-                  <p>1</p>
-                  <button>+</button>
+                  <button disabled={itemToBuy === 0} onClick={() => setItemToBuy(itemToBuy => itemToBuy - 1)}>-</button>
+                  <p>{itemToBuy}</p>
+                  <button disabled={itemToBuy >= 10} onClick={() => setItemToBuy(itemToBuy => itemToBuy + 1)}>+</button>
                 </div>
               </div>
-              <Button name={'add to cart'} bgColor={'bg-primary'} textColor={'text-white'} href={"/" + product.category} />
+              <ButtonAction name={'add to cart'} bgColor={'bg-primary'} textColor={'text-white'} action={handleIncrement} />
             </div>
 
           </div>
