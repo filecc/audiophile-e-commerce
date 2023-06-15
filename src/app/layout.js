@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
       <body className={manrope.className}>
         <CartContextProvider>
           <div className="bg-dark-primary">
-            <div className="max-w-[689px] lg:max-w-[1110px] mx-auto px-4">
+            <div className="max-w-[689px] lg:max-w-[1110px] mx-auto px-4 relative">
               <Navbar />
             </div>
           </div>

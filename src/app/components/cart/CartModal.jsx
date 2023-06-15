@@ -1,19 +1,21 @@
+'use client'
 import { useContext } from "react"
 import { CartContext } from "../utils/CartContext"
 import Link from "next/link";
 import Image from "next/image";
+import Button from "../utils/button";
 
 export default function CartModal({ setCartOpen }) {
     const [state, setState] = useContext(CartContext)
+    const products = state.filter(element => element.quantity > 0)
 
     const handleCartQuantity = () => {
         let quantity = 0;
-        state.forEach(element => {
+        products.forEach(element => {
             quantity += element.quantity
         });
         return quantity
     }
-
 
 
     const handleEmptyCart = () => {
@@ -21,16 +23,41 @@ export default function CartModal({ setCartOpen }) {
         setCartOpen(false)
     }
 
-    const products = state.filter(element => element.quantity > 0)
+    
 
     const handleCartTotal = () => {
         let total = 0;
         products.forEach(element => {
-            total += (element.item.price)*(element.quantity)
+            total += (element.item.price) * (element.quantity)
         });
         return total
     }
     console.log(products);
+
+    const handleDecrementFromCart = (e) => {
+        const id = e.target.getAttribute('data-id');
+
+        const updatedState = state.map((element) => {
+            if (element.item.id == id) {
+                return { ...element, quantity: element.quantity -= 1 };
+            }
+            return element;
+        });
+        setState(updatedState);
+    }
+
+    const handleIncrementFromCart = (e) => {
+        const id = e.target.getAttribute('data-id');
+
+        const updatedState = state.map((element) => {
+            if (element.item.id == id) {
+                return { ...element, quantity: element.quantity += 1 };
+            }
+            return element;
+        });
+        setState(updatedState);
+    }
+
 
     return (
         <div className="px-2 py-6">
@@ -57,9 +84,9 @@ export default function CartModal({ setCartOpen }) {
                                 <div
                                     className={"uppercase text-xs tracking-[1px] font-bold px-6 py-3 bg-gray-100 flex justify-between items-center"}
                                 >
-                                    <button>-</button>
+                                    <button data-id={item.id} onClick={handleDecrementFromCart}>-</button>
                                     <p>{element.quantity}</p>
-                                    <button >+</button>
+                                    <button disabled={element.quantity >= 5} data-id={item.id} onClick={handleIncrementFromCart}>+</button>
                                 </div>
 
                             </div>
@@ -71,6 +98,9 @@ export default function CartModal({ setCartOpen }) {
             <div className="flex justify-between items-center pt-6">
                 <p className="uppercase text-[15px] opacity-40">total</p>
                 <p className="text-[18px] font-bold">€ {handleCartTotal().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
+            </div>
+            <div className="mt-6">
+                <Button name={'checkout'} href={'#'} textColor={'text-white'} bgColor={'bg-primary'} />
             </div>
 
         </div>

@@ -90,8 +90,8 @@ export default function Navbar() {
             <Product title={'earphones'} href={'/earphones'} menu={setMenuOpen} />
         </section>}
       </motion.div>
-      <motion.div layout className="bg-white w-full rounded" style={{height: cartOpen ? 'auto' : 0}}>
-      {cartOpen && <section className='px-4 mt-8 md:flex justify-between max-w-[689px] lg:max-w-[1110px] mx-auto shadow-lg'>
+      <motion.div layout className="bg-white w-full md:max-w-[378px] md:ms-auto rounded absolute right-0 -translate-x-1/2" style={{height: cartOpen ? 'auto' : 0}}>
+      {cartOpen && <section className='bg-white px-4 mt-8 mx-auto shadow-lg  min-w-[378px]'>
             <CartModal itemsTotal={handleCartQuantity()} setCartOpen={setCartOpen} />
         </section>}
       </motion.div>

@@ -18,6 +18,7 @@ export default function ProductDetail({ product }) {
     if (!found) 
     {
       setState(state => ([...state, { quantity: itemToBuy, item: product }]))
+      setItemToBuy(1)
     }
     else 
     {
@@ -28,10 +29,8 @@ export default function ProductDetail({ product }) {
         return element;
       });
       setState(updatedState);
-      console.log(state)
+      setItemToBuy(1)
     }
-
-
   }
 
   return (
