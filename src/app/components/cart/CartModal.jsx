@@ -4,6 +4,7 @@ import { CartContext } from "../utils/CartContext"
 import Link from "next/link";
 import Image from "next/image";
 import Button from "../utils/button";
+import LinkButton from "../utils/linkButton";
 
 export default function CartModal({ setCartOpen }) {
     const [state, setState] = useContext(CartContext)
@@ -17,13 +18,10 @@ export default function CartModal({ setCartOpen }) {
         return quantity
     }
 
-
     const handleEmptyCart = () => {
         setState(state => ([{ quantity: 0, item: '' }]))
         setCartOpen(false)
     }
-
-    
 
     const handleCartTotal = () => {
         let total = 0;
@@ -32,7 +30,6 @@ export default function CartModal({ setCartOpen }) {
         });
         return total
     }
-    console.log(products);
 
     const handleDecrementFromCart = (e) => {
         const id = e.target.getAttribute('data-id');
@@ -58,13 +55,12 @@ export default function CartModal({ setCartOpen }) {
         setState(updatedState);
     }
 
-
     return (
-        <div className="px-2 py-6">
+        <div className="px-2 py-6 bg-white">
             <div className="flex justify-between items-center">
                 <h4 className="font-bold uppercase tracking-[1.29px] text-[18px]">Cart ({handleCartQuantity()})</h4>
                 <div className="flex gap-2 text-[15px]">
-                    <Link className="underline opacity-40 text-[15px]" href={'/'} onClick={handleEmptyCart}>Remove All</Link>
+                    {handleCartQuantity() > 0 && <Link className="underline opacity-40 text-[15px]" href={'/'} onClick={handleEmptyCart}>Remove All</Link>}
                     <button className="opacity-40" onClick={() => setCartOpen(false)}>Close</button>
                 </div>
             </div>
@@ -94,14 +90,14 @@ export default function CartModal({ setCartOpen }) {
                     )
                 })}
             </div>
-
-            <div className="flex justify-between items-center pt-6">
+            {handleCartQuantity() > 0 ? <><div className="flex justify-between items-center pt-6 bg-white">
                 <p className="uppercase text-[15px] opacity-40">total</p>
                 <p className="text-[18px] font-bold">€ {handleCartTotal().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
             </div>
-            <div className="mt-6">
-                <Button name={'checkout'} href={'#'} textColor={'text-white'} bgColor={'bg-primary'} />
+             <div className="mt-6 bg-white">
+                <LinkButton name={'checkout'} action={'/checkout'} textColor={'text-white'} bgColor={'bg-primary'} />
             </div>
+            </> : <p className="opacity-40">Add something to the cart.</p>}
 
         </div>
     )

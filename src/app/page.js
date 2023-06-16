@@ -69,7 +69,7 @@ export default function Home() {
             </p>
             <Button
               name={'see product'}
-              href={'/'}
+              href={'/speakers'}
               bgColor={'bg-black'}
               textColor={'text-white'}
             />
@@ -83,7 +83,7 @@ export default function Home() {
             <h2 className='uppercase font-bold text-3xl py-8'>zx7 speaker</h2>
             <Button
               name={'see product'}
-              href={'/'}
+              href={'/speakers/zx7-speaker'}
               border={'border-black border-[1px]'}
             />
           </div>
@@ -99,7 +99,7 @@ export default function Home() {
             <h2 className='uppercase font-bold text-3xl'>yx1 earphones</h2>
             <Button
               name={'see product'}
-              href={'/'}
+              href={'/earphones/yx1-earphones'}
               border={'border-black border-[1px]'}
             />
           </div>

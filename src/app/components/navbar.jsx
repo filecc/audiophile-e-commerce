@@ -83,14 +83,14 @@ export default function Navbar() {
         />
       </div>
     </header>
-      <motion.div layout className="bg-white w-full rounded-b lg:hidden" style={{height: menuOpen ? 'auto' : 0}}>
+      <motion.div className="bg-white w-full rounded-b lg:hidden" style={{height: menuOpen ? 'auto' : 0}}>
       {menuOpen && <section className='px-4 pt-16 pb-4 md:flex justify-between max-w-[689px] lg:max-w-[1110px] mx-auto'>
             <Product title={'headphones'} href={'/headphones'} menu={setMenuOpen}  />
             <Product title={'speakers'} href={'/speakers'} menu={setMenuOpen} />
             <Product title={'earphones'} href={'/earphones'} menu={setMenuOpen} />
         </section>}
       </motion.div>
-      <motion.div layout className="bg-white w-full md:max-w-[378px] md:ms-auto rounded absolute right-0 -translate-x-1/2" style={{height: cartOpen ? 'auto' : 0}}>
+      <motion.div layout className="bg-white w-full md:max-w-[378px] md:ms-auto rounded absolute right-0 -translate-x-1/2 z-10" style={{height: cartOpen ? 'auto' : 0}}>
       {cartOpen && <section className='bg-white px-4 mt-8 mx-auto shadow-lg  min-w-[378px]'>
             <CartModal itemsTotal={handleCartQuantity()} setCartOpen={setCartOpen} />
         </section>}
