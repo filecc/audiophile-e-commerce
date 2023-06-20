@@ -8,7 +8,6 @@ import { useSelectedLayoutSegment } from 'next/navigation'
 export default function FooterTop()
 {
     const segment = useSelectedLayoutSegment()
-    console.log(segment)
     return (
         <div>
        {segment != 'checkout' && <div className='flex flex-col items-center px-4 gap-8 py-6 lg:flex-row lg:justify-between lg:gap-0 pb-32'>

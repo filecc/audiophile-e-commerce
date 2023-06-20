@@ -7,23 +7,18 @@ import billing from "/public/assets/data/billing.json";
 import shipping from "/public/assets/data/shipping.json";
 import Image from "next/image";
 import ButtonAction from "../components/utils/buttonAction";
+import PaymentModal from "../components/cart/PaymentModal";
 
 export default function Checkout() {
   const [state, setState] = useContext(CartContext);
   const products = state.filter((element) => element.quantity > 0);
   const [payment, setPayment] = useState("e-money");
+  const [modal, setModalOpen] = useState(false)
 
   const handlePayment = (e) => {
     setPayment(e.target.id);
   };
 
-  const handleCartQuantity = () => {
-    let quantity = 0;
-    products.forEach((element) => {
-      quantity += element.quantity;
-    });
-    return quantity;
-  };
 
   const handleCartTotal = () => {
     let total = 0;
@@ -212,7 +207,7 @@ export default function Checkout() {
             </h3>
             <p className="font-bold text-lg">
               €{" "}
-              {(handleCartTotal() * 0.22)
+              {(handleCartTotal() * 0.22).toFixed(2)
                 .toString()
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </p>
@@ -229,10 +224,10 @@ export default function Checkout() {
               .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
           </p>
         </div>
-        
-        <ButtonAction name={'continue & pay'} action={() => {}} bgColor={'bg-primary'} textColor={'text-white'} width={'w-full'} />
+        <ButtonAction name={'continue & pay'} action={() => {setModalOpen(true)}} bgColor={'bg-primary'} textColor={'text-white'} width={'w-full'} />
       </div>
       </div>
+      {modal && <PaymentModal />}
     </div>
   );
 }

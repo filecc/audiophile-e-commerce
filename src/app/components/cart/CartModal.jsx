@@ -3,12 +3,12 @@ import { useContext } from "react"
 import { CartContext } from "../utils/CartContext"
 import Link from "next/link";
 import Image from "next/image";
-import Button from "../utils/button";
 import LinkButton from "../utils/linkButton";
 
 export default function CartModal({ setCartOpen }) {
     const [state, setState] = useContext(CartContext)
     const products = state.filter(element => element.quantity > 0)
+
 
     const handleCartQuantity = () => {
         let quantity = 0;
