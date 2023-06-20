@@ -9,6 +9,7 @@ import Image from "next/image";
 import ButtonAction from "../components/utils/buttonAction";
 import PaymentModal from "../components/cart/PaymentModal";
 import { useRouter } from "next/navigation";
+import Button from "../components/utils/button";
 
 export default function Checkout() {
   const [state, setState] = useContext(CartContext);
@@ -30,10 +31,10 @@ export default function Checkout() {
     return total;
   };
 
-  if (products.length === 0) {() => router.push('/')}
+
 
   return (
-
+    (products.length > 0) ?
     <div className="p-4 max-w-[689px] lg:max-w-[1110px] mx-auto mb-20">
       <Link className="opacity-40 font-medium pb-4 inline-block" href={"/"}>
         Go back
@@ -234,6 +235,12 @@ export default function Checkout() {
       </div>
       {modal && <PaymentModal />}
     </div>
-   
+    : <div className="grid place-items-center min-h-[70dvh] ">
+        <div className="text-center">
+        <p className="py-6 font-bold">It&apos;s empty here.</p>
+        <Button name={'back home'} href={'/'} bgColor={'bg-primary'} textColor={'text-white'} />
+        </div>
+       
+    </div>
   )
 }
