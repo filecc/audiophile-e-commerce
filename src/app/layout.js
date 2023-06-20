@@ -15,7 +15,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={manrope.className}>
+      <body className={manrope.className + ' ' + 'bg-body-bg'}>
         <CartContextProvider>
           <div className="bg-dark-primary">
             <div className="max-w-[689px] lg:max-w-[1110px] mx-auto px-4 relative">

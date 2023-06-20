@@ -12,7 +12,9 @@ module.exports = {
         'dark-secondary': '#101010',
         'primary': '#D87D4A',
         'light-gray': '#979797',
-        'mute': '#F1F1F1'
+        'mute': '#F1F1F1',
+        'body-bg': '#FAFAFA'
+
       }
     },
     screens: {
@@ -23,5 +25,7 @@ module.exports = {
       '2xl': '1536px',
     }
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 }

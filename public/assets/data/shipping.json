@@ -1,0 +1,23 @@
+[
+    {
+        "type": "text",
+        "label": "Your Address",
+        "placeholder": "Via Roma 35"
+    },
+    {
+        "type": "number",
+        "label": "ZIP Code",
+        "placeholder": "10144"
+    },
+    {
+        "type": "text",
+        "label": "City",
+        "placeholder": "Turin"
+    },
+    {
+        "type": "text",
+        "label": "Country",
+        "placeholder": "Italy"
+    }
+   
+]

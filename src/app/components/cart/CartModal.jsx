@@ -94,7 +94,7 @@ export default function CartModal({ setCartOpen }) {
                 <p className="uppercase text-[15px] opacity-40">total</p>
                 <p className="text-[18px] font-bold">€ {handleCartTotal().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
             </div>
-             <div className="mt-6 bg-white">
+             <div className="mt-6 bg-white" onClick={() => setCartOpen(false)}>
                 <LinkButton name={'checkout'} action={'/checkout'} textColor={'text-white'} bgColor={'bg-primary'} />
             </div>
             </> : <p className="opacity-40">Add something to the cart.</p>}
