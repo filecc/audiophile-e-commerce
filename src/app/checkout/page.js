@@ -8,12 +8,14 @@ import shipping from "/public/assets/data/shipping.json";
 import Image from "next/image";
 import ButtonAction from "../components/utils/buttonAction";
 import PaymentModal from "../components/cart/PaymentModal";
+import { useRouter } from "next/navigation";
 
 export default function Checkout() {
   const [state, setState] = useContext(CartContext);
   const products = state.filter((element) => element.quantity > 0);
   const [payment, setPayment] = useState("e-money");
   const [modal, setModalOpen] = useState(false)
+  const router = useRouter()
 
   const handlePayment = (e) => {
     setPayment(e.target.id);
@@ -28,7 +30,10 @@ export default function Checkout() {
     return total;
   };
 
+  if (products.length === 0) {router.push('/')}
+
   return (
+
     <div className="p-4 max-w-[689px] lg:max-w-[1110px] mx-auto mb-20">
       <Link className="opacity-40 font-medium pb-4 inline-block" href={"/"}>
         Go back
@@ -229,5 +234,6 @@ export default function Checkout() {
       </div>
       {modal && <PaymentModal />}
     </div>
-  );
+   
+  )
 }

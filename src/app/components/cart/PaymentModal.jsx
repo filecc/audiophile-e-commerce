@@ -33,19 +33,24 @@ export default function PaymentModal() {
 
     }
 
+  
+
     return (
         <div className="fixed w-full h-full bg-slate-800 bg-opacity-30 top-0 left-0 bottom-0 flex justify-center items-center z-10">
-            <div className="bg-white rounded-lg w-11/12 px-6 py-8 flex flex-col gap-4">
+            <div className="bg-white rounded-lg w-11/12 md:w-9/12 lg:w-5/12 px-6 md:px-12 py-8 md:py-10 flex flex-col gap-4">
                 <Image src={checkMark} alt="confirmed" />
                 <div>
-                    <h2 className="font-bold text-2xl tracking-wide uppercase">thank you  <br /> for your order</h2>
+                    <h2 className="font-bold text-2xl tracking-wide uppercase md:text-3xl">thank you  <br /> for your order</h2>
                 </div>
                 <div>
                     <p className="opacity-40 text-sm">
                         You will receive an email confirmation shortly.
                     </p>
                 </div>
-                <div className="rounded-lg bg-body-bg px-6 py-4">
+                <div className="md:flex">
+
+                
+                <div className="rounded-lg md:rounded-none md:rounded-tl-lg md:rounded-bl-lg md:w-7/12 bg-body-bg px-6 py-4">
                     <div
                         className="flex justify-between items-center"
                     >
@@ -78,14 +83,15 @@ export default function PaymentModal() {
                     </div>}
 
                 </div>
-                <div className="bg-black w-full -mt-5 rounded-b-lg px-6 py-4">
+                <div className="bg-black w-full rounded-b-lg px-6 py-4 md:w-5/12 md:rounded-none md:rounded-tr-lg md:rounded-br-lg">
                     <h2 className="text-slate-300 opacity-80 font-bold text-lg tracking-wide uppercase">grand total</h2>
                     <p className="text-white font-bold text-lg">€
                         {handleCartTotal().toString()
                             .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                     </p>
                 </div>
-                <div >
+                </div>
+                <div>
                     <ButtonAction action={emptyCart} name={'back home'} href={'/'} bgColor={'bg-primary'} textColor={'text-white text-center'} width={'w-full'} />
                 </div>
             </div>
