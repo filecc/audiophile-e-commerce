@@ -30,7 +30,7 @@ export default function Checkout() {
     return total;
   };
 
-  if (products.length === 0) {router.push('/')}
+  if (products.length === 0) {() => router.push('/')}
 
   return (
 
