@@ -14,9 +14,7 @@ export default function FooterBottom() {
                 <Image className='hidden lg:block' src={logo} alt='logo' />
                 <div className='flex flex-col justify-center items-center md:items-start gap-4 lg:gap-6 lg:flex-row'>
                     {links.map((element) => {
-
                         return (
-
                             <Link
                                 key={element.href}
                                 className={"uppercase font-bold text-[13px] tracking-[2px] cursor-pointer hover:text-primary transition-colors duration-500"}
@@ -24,7 +22,6 @@ export default function FooterBottom() {
                             >
                                 {element.name}
                             </Link>
-
                         );
                     })}
                 </div>

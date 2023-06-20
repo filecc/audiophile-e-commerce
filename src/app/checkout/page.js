@@ -34,10 +34,12 @@ export default function Checkout() {
   };
 
   return (
-    <div className="p-4 max-w-[689px] lg:max-w-[1110px] mx-auto">
+    <div className="p-4 max-w-[689px] lg:max-w-[1110px] mx-auto mb-20">
       <Link className="opacity-40 font-medium pb-4 inline-block" href={"/"}>
         Go back
       </Link>
+      <div className="lg:flex lg:gap-6 lg:items-start">
+
       <div className="rounded-2xl bg-white flex flex-col gap-6 py-6 px-6">
         <h1 className="uppercase text-3xl font-bold tracking-[1px]">
           checkout
@@ -45,10 +47,11 @@ export default function Checkout() {
         <h2 className="font-bold text-sm tracking-[1px] text-primary uppercase">
           billing details
         </h2>
-        <div>
+        <div className="md:flex md:flex-wrap">
           {billing.map((element) => {
             return (
               <ShipInfo
+                width={'md:w-6/12 md:px-2'}
                 key={element.label}
                 placeholder={element.placeholder}
                 type={element.type}
@@ -61,10 +64,11 @@ export default function Checkout() {
         <h2 className="font-bold text-sm tracking-[1px] text-primary uppercase">
           shipping info
         </h2>
-        <div>
-          {shipping.map((element) => {
+        <div className="md:flex md:flex-wrap">
+          {shipping.map((element, index) => {
             return (
               <ShipInfo
+                width={index === 0 ? 'md:w-full' : 'md:w-6/12 px-2'}
                 key={element.label}
                 placeholder={element.placeholder}
                 type={element.type}
@@ -77,10 +81,10 @@ export default function Checkout() {
         <h2 className="font-bold text-sm tracking-[1px] text-primary uppercase">
           payment details
         </h2>
-        <div>
+        <div className="md:flex md:gap-4">
           <div
             className={
-              "flex items-center pl-4 border border-gray-200 rounded-lg dark:border-gray-700 mb-4" +
+              "flex items-center pl-4 border border-gray-200 rounded-lg mb-4 md:w-6/12" +
               " " +
               (payment === "e-money" && "border-primary")
             }
@@ -99,14 +103,14 @@ export default function Checkout() {
             />
             <label
               htmlFor="e-money"
-              className="w-full py-5 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              className="w-full py-5 ml-2 text-sm font-medium text-gray-900"
             >
               e-Money
             </label>
           </div>
           <div
             className={
-              "flex items-center pl-4 border border-gray-200 rounded-lg dark:border-gray-700" +
+              "flex items-center pl-4 border border-gray-200 rounded-lg mb-4 md:w-6/12" +
               " " +
               (payment === "cash" && "border-primary")
             }
@@ -130,13 +134,15 @@ export default function Checkout() {
           </div>
         </div>
         {payment === "e-money" && (
-          <div>
+          <div className="md:flex md:gap-4">
             <ShipInfo
+              width={'md:w-6/12'}
               placeholder={"238521993"}
               type={"number"}
               label={"e-Money Number"}
             />
             <ShipInfo
+              width={'md:w-6/12'}
               placeholder={"6891"}
               type={"number"}
               label={"e-Money PIN"}
@@ -144,7 +150,8 @@ export default function Checkout() {
           </div>
         )}
       </div>
-      <div className="rounded-2xl bg-white flex flex-col gap-3 py-6 px-6">
+
+      <div className="rounded-2xl bg-white flex flex-col gap-3 py-6 px-6 mt-6 lg:mt-0 lg:w-4/12">
         <h2 className="font-bold uppercase text-lg tracking-[1.3px]">
           summary
         </h2>
@@ -173,7 +180,7 @@ export default function Checkout() {
                 <div className="w-2/12">
                   <div
                     className={
-                      "uppercase text-xs tracking-[1px] font-bold flex justify-between items-center"
+                      "uppercase text-xs tracking-[1px] font-bold flex justify-between items-center md:justify-end"
                     }
                   >
                     <p>x {element.quantity}</p>
@@ -224,6 +231,7 @@ export default function Checkout() {
         </div>
         
         <ButtonAction name={'continue & pay'} action={() => {}} bgColor={'bg-primary'} textColor={'text-white'} width={'w-full'} />
+      </div>
       </div>
     </div>
   );

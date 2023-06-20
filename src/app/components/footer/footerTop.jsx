@@ -1,12 +1,17 @@
+'use client'
 import footerImage from '/public/assets/shared/mobile/image-best-gear.jpg'
 import footerImageTablet from '/public/assets/shared/tablet/image-best-gear.jpg'
 import footerImageDesktop from '/public/assets/shared/desktop/image-best-gear.jpg'
 import Image from 'next/image'
+import { useSelectedLayoutSegment } from 'next/navigation'
 
 export default function FooterTop()
 {
+    const segment = useSelectedLayoutSegment()
+    console.log(segment)
     return (
-        <div className='flex flex-col items-center px-4 gap-8 py-6 lg:flex-row lg:justify-between lg:gap-0 pb-32'>
+        <div>
+       {segment != 'checkout' && <div className='flex flex-col items-center px-4 gap-8 py-6 lg:flex-row lg:justify-between lg:gap-0 pb-32'>
         <div>
             <Image className='rounded-lg md:hidden' src={footerImage} alt="man wearing headphones" />
             <Image className='rounded-lg hidden md:block lg:hidden' src={footerImageTablet} alt="man wearing headphones" />
@@ -26,6 +31,7 @@ export default function FooterTop()
             <Image className='rounded-lg hidden lg:block' src={footerImageDesktop} alt="man wearing headphones" />
         </div>
            
+        </div>}
         </div>
     )
 }
