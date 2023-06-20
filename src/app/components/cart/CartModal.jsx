@@ -18,11 +18,6 @@ export default function CartModal({ setCartOpen }) {
         return quantity
     }
 
-    const handleEmptyCart = () => {
-        setState(state => ([{ quantity: 0, item: '' }]))
-        setCartOpen(false)
-    }
-
     const handleCartTotal = () => {
         let total = 0;
         products.forEach(element => {
@@ -30,6 +25,12 @@ export default function CartModal({ setCartOpen }) {
         });
         return total
     }
+    const handleEmptyCart = () => {
+        setState(state => ([{ quantity: 0, item: '' }]))
+        setCartOpen(false)
+    }
+
+    
 
     const handleDecrementFromCart = (e) => {
         const id = e.target.getAttribute('data-id');

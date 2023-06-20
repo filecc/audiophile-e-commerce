@@ -5,12 +5,12 @@
         "placeholder": "Alexei Ward"
     },
     {
-        "type": "e-mail",
+        "type": "text",
         "label": "Email Address",
         "placeholder": "alexei@mail.com"
     },
     {
-        "type": "phone",
+        "type": "text",
         "label": "Phone Number",
         "placeholder": "+1 202-555-0136"
     }

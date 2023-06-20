@@ -5,15 +5,33 @@ import Link from "next/link";
 import ShipInfo from "../components/cart/ShipInfo";
 import billing from "/public/assets/data/billing.json";
 import shipping from "/public/assets/data/shipping.json";
+import Image from "next/image";
+import ButtonAction from "../components/utils/buttonAction";
 
 export default function Checkout() {
-  const [state, setState] = useContext(CartContext)
+  const [state, setState] = useContext(CartContext);
   const products = state.filter((element) => element.quantity > 0);
-  const [payment, setPayment] = useState('e-money')
+  const [payment, setPayment] = useState("e-money");
 
   const handlePayment = (e) => {
-    setPayment(e.target.id)
-  }
+    setPayment(e.target.id);
+  };
+
+  const handleCartQuantity = () => {
+    let quantity = 0;
+    products.forEach((element) => {
+      quantity += element.quantity;
+    });
+    return quantity;
+  };
+
+  const handleCartTotal = () => {
+    let total = 0;
+    products.forEach((element) => {
+      total += element.item.price * element.quantity;
+    });
+    return total;
+  };
 
   return (
     <div className="p-4 max-w-[689px] lg:max-w-[1110px] mx-auto">
@@ -60,18 +78,24 @@ export default function Checkout() {
           payment details
         </h2>
         <div>
-          <div className={"flex items-center pl-4 border border-gray-200 rounded-lg dark:border-gray-700 mb-4" 
-          + ' ' 
-          + (payment === 'e-money' && 'border-primary')} 
-          onClick={handlePayment}>
+          <div
+            className={
+              "flex items-center pl-4 border border-gray-200 rounded-lg dark:border-gray-700 mb-4" +
+              " " +
+              (payment === "e-money" && "border-primary")
+            }
+            onClick={handlePayment}
+          >
             <input
-              checked={payment === 'e-money'}
+              checked={payment === "e-money"}
               readOnly
               id="e-money"
               type="radio"
               value=""
               name="e-money"
-              className={"w-6 h-6 text-primary bg-gray-100 border-gray-300 focus:ring-primary focus:ring-2"}
+              className={
+                "w-6 h-6 text-primary bg-gray-100 border-gray-300 focus:ring-primary focus:ring-2"
+              }
             />
             <label
               htmlFor="e-money"
@@ -80,10 +104,16 @@ export default function Checkout() {
               e-Money
             </label>
           </div>
-          <div className={"flex items-center pl-4 border border-gray-200 rounded-lg dark:border-gray-700"  + ' ' 
-          + (payment === 'cash' && 'border-primary')} onClick={handlePayment}>
+          <div
+            className={
+              "flex items-center pl-4 border border-gray-200 rounded-lg dark:border-gray-700" +
+              " " +
+              (payment === "cash" && "border-primary")
+            }
+            onClick={handlePayment}
+          >
             <input
-              checked={payment === 'cash'}
+              checked={payment === "cash"}
               readOnly
               id="cash"
               type="radio"
@@ -99,6 +129,101 @@ export default function Checkout() {
             </label>
           </div>
         </div>
+        {payment === "e-money" && (
+          <div>
+            <ShipInfo
+              placeholder={"238521993"}
+              type={"number"}
+              label={"e-Money Number"}
+            />
+            <ShipInfo
+              placeholder={"6891"}
+              type={"number"}
+              label={"e-Money PIN"}
+            />
+          </div>
+        )}
+      </div>
+      <div className="rounded-2xl bg-white flex flex-col gap-3 py-6 px-6">
+        <h2 className="font-bold uppercase text-lg tracking-[1.3px]">
+          summary
+        </h2>
+        <div className="flex flex-col gap-4 pt-8">
+          {products.map((element) => {
+            const item = element.item;
+            return (
+              <div
+                key={item.id + "-" + item.name}
+                className="flex justify-between items-center"
+              >
+                <div className="relative h-16 w-16">
+                  <Image
+                    className="rounded-lg"
+                    src={item.image.mobile}
+                    alt={item.name}
+                    fill={true}
+                  />
+                </div>
+                <div className="w-6/12">
+                  <h6 className="font-bold uppercase">{item.name}</h6>
+                  <small className="text-sm opacity-40 font-bold">
+                    € {item.price}
+                  </small>
+                </div>
+                <div className="w-2/12">
+                  <div
+                    className={
+                      "uppercase text-xs tracking-[1px] font-bold flex justify-between items-center"
+                    }
+                  >
+                    <p>x {element.quantity}</p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        <div className="flex flex-col gap-1">
+          <div className="flex justify-between items-center">
+            <h3 className="uppercase font-medium opacity-40 text-sm">total</h3>
+            <p className="font-bold text-lg">
+              €{" "}
+              {handleCartTotal()
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            </p>
+          </div>
+          <div className="flex justify-between items-center">
+            <h3 className="uppercase font-medium opacity-40 text-sm">
+              shipping
+            </h3>
+            <p className="font-bold text-lg">€ 50</p>
+          </div>
+          <div className="flex justify-between items-center">
+            <h3 className="uppercase font-medium opacity-40 text-sm">
+              vat (included)
+            </h3>
+            <p className="font-bold text-lg">
+              €{" "}
+              {(handleCartTotal() * 0.22)
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            </p>
+          </div>
+        </div>
+        <div className="flex justify-between items-center">
+          <h3 className="uppercase font-medium opacity-40 text-sm">
+            grand total
+          </h3>
+          <p className="font-bold text-lg text-primary">
+            €{" "}
+            {(handleCartTotal() + 50)
+              .toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          </p>
+        </div>
+        
+        <ButtonAction name={'continue & pay'} action={() => {}} bgColor={'bg-primary'} textColor={'text-white'} width={'w-full'} />
       </div>
     </div>
   );
